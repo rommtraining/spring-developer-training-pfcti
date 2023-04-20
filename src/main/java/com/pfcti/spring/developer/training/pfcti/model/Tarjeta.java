@@ -16,6 +16,6 @@ public class Tarjeta {
 
     private String tipo;
     @ManyToOne()
-    @JoinColumn(name="client_id", referencedColumnName = "id")
+    @JoinColumn(name="cliente_id", referencedColumnName = "id")
     private Cliente cliente;
 }

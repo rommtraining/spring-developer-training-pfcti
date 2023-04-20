@@ -17,6 +17,6 @@ public class Direccion {
     private String nomenclatura;
 
     @ManyToOne
-    @JoinColumn(name="client_Id", referencedColumnName = "id")
+    @JoinColumn(name="cliente_Id", referencedColumnName = "id")
     private Cliente cliente;
 }

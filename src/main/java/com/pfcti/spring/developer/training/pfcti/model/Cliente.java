@@ -23,6 +23,6 @@ public class Cliente {
     @Column
     private String telefono;
 
-    @OneToMany(mappedBy = "cliente")
+    @OneToMany(mappedBy = "cliente")//, cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
     private List<Direccion> direcciones;
 }
