@@ -60,12 +60,55 @@ class ClienteServiceTest {
 
     @Test
     void obtenerClientes() {
-        clienteService.obtenerClientes().stream().map(
-                cliente -> {
-                    System.out.println("Cliente " + cliente.getApellidos());
-                    return cliente;
-                }
-        ).collect(Collectors.toList());
+        List<ClienteDto> clientesDto = clienteService.obtenerClientes();
+        clientesDto.forEach(cliente -> System.out.println("Cliente: " + cliente.getApellidos()));
+
+        assertEquals(2,clientesDto.size());
+    }
+
+    @Test
+    void obtenerClientesPorCodigoIsoPaisYCuentasActivas() {
+        List<ClienteDto> clientesDto = clienteService.obtenerClientesPorCodigoIsoPaisYCuentasActivas("CR");
+        clientesDto.forEach(clienteDto -> {
+            System.out.println("Cliente: " + clienteDto.getApellidos());
+        });
+        assertEquals(1, clientesDto.size());
+    }
+
+    @Test
+    void eliminarCliente() {
+        clienteService.eliminarCliente(1);
         assertEquals(1,1);
+    }
+
+    @Test
+    void buscarPorApellidos() {
+        List<ClienteDto> clientesDto = clienteService.buscarPorApellidos("SANCHEZ");
+        clientesDto.forEach(clienteDto -> {
+            System.out.println("Cliente: " + clienteDto.getApellidos());
+        });
+        assertEquals(1,clientesDto.size());
+    }
+
+    @Test
+    void buscarPorApellidosQueryNativo() {
+        List<ClienteDto> clientesDto = clienteService.buscarPorApellidosQueryNativo("SANCHEZ");
+        clientesDto.forEach(clienteDto -> {
+            System.out.println("Cliente: " + clienteDto.getApellidos());
+        });
+        assertEquals(1,clientesDto.size());
+    }
+
+    @Test
+    void actualizarClientePorQuery() {
+        ClienteDto clienteDtoOriginal = clienteService.buscarPorApellidos("SANCHEZ").get(0);
+        System.out.println("Nombre original " + clienteDtoOriginal.getNombre());
+
+        clienteService.actualizarClientePorQuery("Maria", "SANCHEZ");
+
+        ClienteDto clienteDtoDespues = clienteService.buscarPorApellidos("SANCHEZ").get(0);
+        System.out.println("Nombre despues " + clienteDtoDespues.getNombre());
+
+        assertNotEquals(clienteDtoOriginal.getNombre(), clienteDtoDespues.getNombre());
     }
 }

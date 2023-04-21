@@ -21,8 +21,13 @@ public class Cliente {
     @Column(columnDefinition = "varchar(15)")
     private String cedula;
     @Column
+    private String pais;
+    @Column
     private String telefono;
 
     @OneToMany(mappedBy = "cliente")//, cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
     private List<Direccion> direcciones;
+
+    @OneToMany(mappedBy = "cliente")//, cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
+    private List<Cuenta> cuentas;
 }

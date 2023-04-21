@@ -10,7 +10,9 @@ public class ClienteDto {
     private String nombre;
     private String apellidos;
     private String cedula;
+    private String pais;
     private String telefono;
     private List<DireccionesDto> direcciones;
+    private List<CuentaDto> cuentas;
 
 }
