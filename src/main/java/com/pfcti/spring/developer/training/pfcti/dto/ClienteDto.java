@@ -1,5 +1,7 @@
 package com.pfcti.spring.developer.training.pfcti.dto;
 
+import com.pfcti.spring.developer.training.pfcti.model.Tarjeta;
+import jakarta.persistence.OneToMany;
 import lombok.Data;
 
 import java.util.List;
@@ -14,5 +16,5 @@ public class ClienteDto {
     private String telefono;
     private List<DireccionesDto> direcciones;
     private List<CuentaDto> cuentas;
-
+    private List<TarjetaDto> tarjetas;
 }

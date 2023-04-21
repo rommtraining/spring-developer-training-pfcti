@@ -8,5 +8,6 @@ public class TarjetaDto {
     private int id;
     private String direccion;
     private String nomenclatura;
+    private boolean estado;
     private int clienteId;
 }

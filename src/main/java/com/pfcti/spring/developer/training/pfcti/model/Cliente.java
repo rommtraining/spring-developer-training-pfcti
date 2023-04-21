@@ -30,4 +30,7 @@ public class Cliente {
 
     @OneToMany(mappedBy = "cliente")//, cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
     private List<Cuenta> cuentas;
+
+    @OneToMany(mappedBy = "cliente")//, cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
+    private List<Tarjeta> tarjetas;
 }
