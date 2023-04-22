@@ -5,8 +5,8 @@ import lombok.Data;
 public class CuentaDto {
 
     private int id;
-    private String direccion;
-    private String nomenclatura;
-    private boolean estado;
+    private String numero;
+    private String tipo;
+    private Boolean estado;
     private int clienteId;
 }

@@ -127,4 +127,51 @@ class ClienteServiceTest {
         System.out.println("Clientes extranjeros con tarjetas inactivas: " + clienteDtos.get(0).getApellidos());
         assertEquals("PEREZ", clienteDtos.get(0).getApellidos());
     }
+
+    @Test
+    void buscarDinamicamentePorCriterios() {
+
+        List<ClienteDto> clientesDto = clienteService.buscarDinamicamentePorCriterios(new ClienteDto());
+        assertFalse(clientesDto.isEmpty());
+        clientesDto.forEach(clienteDto -> {
+            System.out.println("Cliente: " + clienteDto.getApellidos());
+        });
+        assertTrue(clientesDto.size() >= 2);
+
+        ClienteDto clienteDto = new ClienteDto();
+        clienteDto.setApellidos("SANCHEZ");
+        clientesDto = clienteService.buscarDinamicamentePorCriterios(clienteDto);
+        clientesDto.forEach(clienteDto1 -> {
+            System.out.println("Cliente: " + clienteDto1.getApellidos());
+        });
+        assertTrue(clientesDto.size() == 3);
+
+        ClienteDto clienteDto2 = new ClienteDto();
+        clienteDto2.setApellidos("SANCHEZ");
+        clienteDto2.setNombre("MARIA");
+        clientesDto = clienteService.buscarDinamicamentePorCriterios(clienteDto2);
+        clientesDto.forEach(clienteDto1 -> {
+            System.out.println("Cliente: " + clienteDto1.getApellidos());
+        });
+        assertTrue(clientesDto.size() == 1);
+
+        ClienteDto clienteDto3 = new ClienteDto();
+        clienteDto3.setApellidos("SANCHEZ");
+        clienteDto3.setCedula("3");
+        clientesDto = clienteService.buscarDinamicamentePorCriterios(clienteDto3);
+        clientesDto.forEach(clienteDto1 -> {
+            System.out.println("Cliente: " + clienteDto1.getApellidos());
+        });
+        assertTrue(clientesDto.size() == 1);
+
+        ClienteDto clienteDto4 = new ClienteDto();
+        clienteDto4.setApellidos("SANCHEZ");
+        clienteDto4.setNombre("MARIA");
+        clienteDto4.setCedula("3");
+        clientesDto = clienteService.buscarDinamicamentePorCriterios(clienteDto4);
+        clientesDto.forEach(clienteDto1 -> {
+            System.out.println("Cliente: " + clienteDto1.getApellidos());
+        });
+        assertTrue(clientesDto.size() == 1);
+    }
 }

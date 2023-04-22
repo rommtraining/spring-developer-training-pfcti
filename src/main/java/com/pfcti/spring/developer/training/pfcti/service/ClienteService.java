@@ -1,5 +1,6 @@
 package com.pfcti.spring.developer.training.pfcti.service;
 
+import com.pfcti.spring.developer.training.pfcti.criteria.ClienteSpecification;
 import com.pfcti.spring.developer.training.pfcti.dto.ClienteDto;
 import com.pfcti.spring.developer.training.pfcti.model.Cliente;
 import com.pfcti.spring.developer.training.pfcti.repository.*;
@@ -22,6 +23,8 @@ public class ClienteService {
     private CuentaRepository cuentaRepository;
     private TarjetaRepository tarjetaRepository;
     private InversionRepository inversionRepository;
+
+    private ClienteSpecification clienteSpecification;
 
     public void insertarCliente(ClienteDto clienteDto) {
         Cliente cliente = new Cliente();
@@ -143,6 +146,14 @@ public class ClienteService {
     public List<ClienteDto> buscarClientesExtranjerosConTarjetasInactivas(String pais) {
         return clienteRepository
                 .findByPaisIsNotAndTarjetas_EstadoIsFalse(pais)
+                .stream()
+                .map(this::deClienteAClienteDto)
+                .collect(Collectors.toList());
+    }
+
+    public List<ClienteDto> buscarDinamicamentePorCriterios(ClienteDto clienteDto) {
+        return clienteRepository
+                .findAll(clienteSpecification.buildFilter(clienteDto))
                 .stream()
                 .map(this::deClienteAClienteDto)
                 .collect(Collectors.toList());
