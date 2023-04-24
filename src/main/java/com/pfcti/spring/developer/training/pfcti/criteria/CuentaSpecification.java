@@ -29,8 +29,8 @@ public class CuentaSpecification {
 
     public <T> Specification<T> isTrue(String fieldName, Boolean fieldValue) {
         return fieldValue == null ? null :
-                (root, query, criteriaBuilder)
-                        -> criteriaBuilder.isTrue(root.get(fieldName));
+                (root, query, criteriaBuilder) ->
+                        criteriaBuilder.equal(root.get(fieldName), fieldValue);
     }
 
     private Specification<Cuenta> numeroCriteria(CuentaDto cuentaDto) {
@@ -50,7 +50,8 @@ public class CuentaSpecification {
         System.out.println("Busqueda por criterios: " + cuentaDto);
         return Specification
                 .where(numeroCriteria(cuentaDto))
-                .and(tipoCriteria(cuentaDto)
-                .and(estadoCriteria(cuentaDto)));
+                .and(estadoCriteria(cuentaDto))
+                .and(tipoCriteria(cuentaDto));
+
     }
 }

@@ -27,6 +27,12 @@ public class ClienteSpecification {
         }
     }
 
+    public <T> Specification<T> isTrue(String fieldName, Boolean fieldValue) {
+        return fieldValue == null ? null :
+                (root, query, criteriaBuilder) ->
+                        criteriaBuilder.equal(root.get(fieldName), fieldValue);
+    }
+
     private Specification<Cliente> apellidosCriteria(ClienteDto clienteDto) {
         return like("apellidos", clienteDto.getApellidos());
     }

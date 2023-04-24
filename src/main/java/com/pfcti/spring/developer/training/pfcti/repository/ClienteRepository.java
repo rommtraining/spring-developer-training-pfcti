@@ -12,6 +12,8 @@ import java.util.List;
 public interface ClienteRepository extends JpaRepository<Cliente, Integer>, JpaSpecificationExecutor<Cliente> {
     List<Cliente> findClientesByPaisAndCuentas_EstadoIsTrue(String pais);
 
+    void deleteAllByCliente_Id(int clienteId);
+
     @Query(value = "select c from Cliente c where c.apellidos = :apellidos")
     List<Cliente> buscarPorApellidos(String apellidos);
 

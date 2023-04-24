@@ -100,11 +100,11 @@ public class ClienteService {
     }
 
     public void eliminarCliente(Integer clienteId) {
-        cuentaRepository.deleteAllByCliente_Id(clienteId);
-        direccionRepository.deleteAllByCliente_Id(clienteId);
-        tarjetaRepository.deleteAllByCliente_Id(clienteId);
-        inversionRepository.deleteAllByCliente_Id(clienteId);
-        clienteRepository.deleteById(clienteId);
+        clienteRepository.deleteAllByCliente_Id(clienteId);
+        direccionRepository.deleteAllByDireccion_Id(clienteId);
+        tarjetaRepository.deleteAllByTarjeta_Id(clienteId);
+        inversionRepository.deleteAllByInversion_Id(clienteId);
+        cuentaRepository.deleteAllByCuenta_Id(clienteId);
     }
 
     public List<ClienteDto> buscarPorApellidos(String apellidos) {
@@ -158,4 +158,6 @@ public class ClienteService {
                 .map(this::deClienteAClienteDto)
                 .collect(Collectors.toList());
     }
+
+
 }
