@@ -12,7 +12,7 @@ import java.util.List;
 public interface ClienteRepository extends JpaRepository<Cliente, Integer>, JpaSpecificationExecutor<Cliente> {
     List<Cliente> findClientesByPaisAndCuentas_EstadoIsTrue(String pais);
 
-    void deleteAllByCliente_Id(int clienteId);
+    void deleteClienteById(int clienteId);
 
     @Query(value = "select c from Cliente c where c.apellidos = :apellidos")
     List<Cliente> buscarPorApellidos(String apellidos);
@@ -27,4 +27,8 @@ public interface ClienteRepository extends JpaRepository<Cliente, Integer>, JpaS
     List<Cliente> findByApellidosAndAndNombre(String apellidos, String nombre);
 
     List<Cliente> findByPaisIsNotAndTarjetas_EstadoIsFalse(String pais);
+
+    List<Cliente> findClientesByCedula(String cedula);
+
+    List<Cliente> findClientesByNombreContainingIgnoreCaseOrApellidosContainingIgnoreCase(String nombre, String apellidos);
 }

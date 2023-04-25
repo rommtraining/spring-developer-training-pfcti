@@ -21,7 +21,7 @@ class CuentaServiceTest {
     @Test
     void buscarDinamicamentePorCriterios() {
         CuentaDto cuentaDto = new CuentaDto();
-        cuentaDto.setEstado(true);
+        cuentaDto.setEstado(false);
         List<CuentaDto> cuentasDto = cuentaService.buscarDinamicamentePorCriterios(cuentaDto);
         cuentasDto.forEach(
                         cuentaDtoResultado -> {

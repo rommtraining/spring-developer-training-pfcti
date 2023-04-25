@@ -100,11 +100,12 @@ public class ClienteService {
     }
 
     public void eliminarCliente(Integer clienteId) {
-        clienteRepository.deleteAllByCliente_Id(clienteId);
-        direccionRepository.deleteAllByDireccion_Id(clienteId);
-        tarjetaRepository.deleteAllByTarjeta_Id(clienteId);
-        inversionRepository.deleteAllByInversion_Id(clienteId);
-        cuentaRepository.deleteAllByCuenta_Id(clienteId);
+
+        direccionRepository.deleteAllByCliente_Id(clienteId);
+        tarjetaRepository.deleteAllByCliente_Id(clienteId);
+        inversionRepository.deleteAllByCliente_Id(clienteId);
+        cuentaRepository.deleteAllByCliente_Id(clienteId);
+        clienteRepository.deleteClienteById(clienteId);
     }
 
     public List<ClienteDto> buscarPorApellidos(String apellidos) {
