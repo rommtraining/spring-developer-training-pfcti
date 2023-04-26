@@ -30,4 +30,45 @@ class CuentaServiceTest {
                 );
         assertEquals(1,1);
     }
+
+    @Test
+    void insertarCuenta() {
+        CuentaDto cuentaDto = new CuentaDto();
+        cuentaDto.setTipo("A");
+        cuentaDto.setNumero("123");
+        cuentaDto.setEstado(true);
+        cuentaDto.setClienteId(1);
+
+        cuentaService.insertarCuenta(cuentaDto);
+
+        CuentaDto cuentaDto1 = new CuentaDto();
+        cuentaDto1.setEstado(true);
+        cuentaDto1.setClienteId(1);
+
+        List<CuentaDto> cuentasDto = cuentaService.buscarDinamicamentePorCriterios(cuentaDto1);
+        cuentasDto.forEach(
+                cuentaDtoResultado -> {
+                    System.out.println("Cuenta Resultado: " + cuentaDtoResultado.getNumero() + ' ' + cuentaDtoResultado.getTipo());
+                }
+        );
+        assertEquals(1,1);
+    }
+
+    @Test
+    void inactivarCuentaCliente() {
+        cuentaService.inactivarCuentaCliente(1);
+
+        CuentaDto cuentaDto1 = new CuentaDto();
+        cuentaDto1.setEstado(true);
+        cuentaDto1.setClienteId(1);
+
+        List<CuentaDto> cuentasDto = cuentaService.buscarDinamicamentePorCriterios(cuentaDto1);
+        cuentasDto.forEach(
+                cuentaDtoResultado -> {
+                    System.out.println("Cuenta Resultado: " + cuentaDtoResultado.getNumero() + ' ' + cuentaDtoResultado.getTipo() + ' ' + cuentaDtoResultado.getEstado().toString());
+                }
+        );
+
+        assertEquals(1,1);
+    }
 }
