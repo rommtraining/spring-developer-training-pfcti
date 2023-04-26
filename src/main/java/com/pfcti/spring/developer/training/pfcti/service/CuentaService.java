@@ -30,8 +30,8 @@ public class CuentaService {
         cuentaRepository.save(cuenta);
     }
 
-    public void inactivarCuentaCliente(int clienteId) {
-        cuentaRepository.updateCuenta_EstadoByCliente_Id(false, clienteId);
+    public void inactivarCuentasPorCliente(int clienteId) {
+        cuentaRepository.inactivarCuentasPorCliente(clienteId);
     }
 
     private Cuenta deCuentaDtoACuenta(CuentaDto cuentaDto) {
@@ -53,6 +53,14 @@ public class CuentaService {
     public List<CuentaDto> buscarDinamicamentePorCriterios(CuentaDto cuentaDto) {
         return cuentaRepository
                 .findAll(cuentaSpecification.buildFilter(cuentaDto))
+                .stream()
+                .map(this::deCuentaACuentaDto)
+                .collect(Collectors.toList());
+    }
+
+    public List<CuentaDto> obtenerCuentasActivasPorCliente(int clienteId) {
+        return cuentaRepository
+                .findAllByCliente_IdAndEstadoIsTrue(clienteId)
                 .stream()
                 .map(this::deCuentaACuentaDto)
                 .collect(Collectors.toList());

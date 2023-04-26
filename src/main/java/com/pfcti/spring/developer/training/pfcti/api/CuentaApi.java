@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @Slf4j
 @RestController
 @RequestMapping("/v1/api/cuenta")
@@ -22,8 +24,13 @@ public class CuentaApi {
         cuentaService.insertarCuenta(cuentaDto);
     }
 
-    @DeleteMapping(value = "/cuentas")
-    public void inactivarCuentasCliente(@RequestParam int clienteId) {
-        cuentaService.inactivarCuentaCliente(clienteId);
+    @DeleteMapping(value = "/cliente/{id}")
+    public void inactivarCuentasCliente(@PathVariable int id) {
+        cuentaService.inactivarCuentasPorCliente(id);
+    }
+
+    @GetMapping(value = "/cliente/{id}")
+    public List<CuentaDto> obtenerCuentasActivasPorCliente(@PathVariable int id) {
+        return cuentaService.obtenerCuentasActivasPorCliente(id);
     }
 }

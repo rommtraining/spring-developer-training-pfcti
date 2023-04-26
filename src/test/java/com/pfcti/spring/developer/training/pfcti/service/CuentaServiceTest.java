@@ -55,14 +55,26 @@ class CuentaServiceTest {
     }
 
     @Test
-    void inactivarCuentaCliente() {
-        cuentaService.inactivarCuentaCliente(1);
+    void inactivarCuentasPorCliente() {
+        cuentaService.inactivarCuentasPorCliente(1);
 
         CuentaDto cuentaDto1 = new CuentaDto();
         cuentaDto1.setEstado(true);
         cuentaDto1.setClienteId(1);
 
         List<CuentaDto> cuentasDto = cuentaService.buscarDinamicamentePorCriterios(cuentaDto1);
+        cuentasDto.forEach(
+                cuentaDtoResultado -> {
+                    System.out.println("Cuenta Resultado: " + cuentaDtoResultado.getNumero() + ' ' + cuentaDtoResultado.getTipo() + ' ' + cuentaDtoResultado.getEstado().toString());
+                }
+        );
+
+        assertEquals(1,1);
+    }
+
+    @Test
+    void obtenerCuentasActivasPorCliente() {
+        List<CuentaDto> cuentasDto = cuentaService.obtenerCuentasActivasPorCliente(1);
         cuentasDto.forEach(
                 cuentaDtoResultado -> {
                     System.out.println("Cuenta Resultado: " + cuentaDtoResultado.getNumero() + ' ' + cuentaDtoResultado.getTipo() + ' ' + cuentaDtoResultado.getEstado().toString());
