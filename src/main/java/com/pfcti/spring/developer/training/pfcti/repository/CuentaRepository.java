@@ -9,7 +9,6 @@ import org.springframework.data.jpa.repository.Query;
 
 import java.util.List;
 
-@Transactional
 public interface CuentaRepository extends JpaRepository<Cuenta, Integer>, JpaSpecificationExecutor<Cuenta> {
     void deleteAllByCliente_Id(int clienteId);
 

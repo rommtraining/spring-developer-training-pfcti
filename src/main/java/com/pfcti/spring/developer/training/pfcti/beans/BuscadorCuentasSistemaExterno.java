@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 
-@Service("sistemaExterno")
+@Service("sistemaExternoCuentas")
 public class BuscadorCuentasSistemaExterno implements BuscadorCuentas {
     @Override
     public List<CuentaDto> obtenerListaCuentas(CuentaQueryDto cuentaQueryDto) {
